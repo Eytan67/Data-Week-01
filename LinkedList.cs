@@ -12,20 +12,20 @@ namespace day_2
         int Value;
         Node Next;
 
-        public int getValue()
+        public int GetValue()
         {
             return this.Value;
         }
-        public Node getNext()
+        public Node GetNext()
         {
             return this.Next;
         }
 
-        public void setValue(int value)
+        public void SetValue(int value)
         {
             this.Value = value;
         }
-        public void setNext(Node next)
+        public void SetNext(Node next)
         {
             this.Next = next;
         }
@@ -33,7 +33,7 @@ namespace day_2
 
         public Node(int value)
         {
-            this.setValue(value);
+            this.SetValue(value);
             this.Next = null;
         }
     }
@@ -69,9 +69,9 @@ namespace day_2
                 var cur = this.head;
                 for (int i = 0; i < this.Length() - 1; ++i)
                 {
-                    cur = cur.getNext();
+                    cur = cur.GetNext();
                 }
-                cur.setNext(newNode);
+                cur.SetNext(newNode);
             }
                 
             
@@ -80,12 +80,13 @@ namespace day_2
 
         public string Display()
         {
-            //1-> 2-> 5-> - 5-> 5
-            var cur = this.head;
-            string res = "";
+            if (this.head == null)
+                return "";
+            string res = this.head.GetValue().ToString();
+            var cur = this.head.GetNext();
             while(cur != null)
             {
-                res += cur.getValue().ToString() + "-> ";
+                res += "-> " + cur.GetValue().ToString();
             }
             return res;
         }
@@ -97,7 +98,7 @@ namespace day_2
             while(cur != null)
             {
                 ++count;
-                cur = cur.getNext();
+                cur = cur.GetNext();
             }
             return count;
         }
@@ -105,43 +106,43 @@ namespace day_2
         // Method to remove the first value
         public void RemoveValue(int data)
         {
-            if(this.head == null)//-----------------!!!!!!!!!!!!!!!!!!-----------
+            if(this.head == null)
                 return;
-            if(this.head.getValue() == data)
+            if(this.head.GetValue() == data)
             {
-                this.head = this.head.getNext();
+                this.head = this.head.GetNext();
                 return;
             }
             var cur = this.head;
-            while (cur.getNext() != null)
+            while (cur.GetNext() != null)
             {
-                if(cur.getNext().getValue() == data)
+                if(cur.GetNext().GetValue() == data)
                 {
-                    cur.setNext(cur.getNext().getNext());
+                    cur.SetNext(cur.GetNext().GetNext());
                     return;
                 }
-                cur = cur.getNext();
+                cur = cur.GetNext();
             }
         }
 
         // Method to remove the first value
         public void RemoveAllValues(int data)
         {
-            if (this.head == null)//-----------------!!!!!!!!!!!!!!!!!!-----------
+            if (this.head == null)
                 return;
-            if (this.head.getValue() == data)
+            if (this.head.GetValue() == data)
             {
-                this.head = this.head.getNext();
+                this.head = this.head.GetNext();
                 return;
             }
             var cur = this.head;
-            while (cur.getNext() != null)
+            while (cur.GetNext() != null)
             {
-                if (cur.getNext().getValue() == data)
+                if (cur.GetNext().GetValue() == data)
                 {
-                    cur.setNext(cur.getNext().getNext());
+                    cur.SetNext(cur.GetNext().GetNext());
                 }
-                cur = cur.getNext();
+                cur = cur.GetNext();
             }
         }
 
@@ -154,20 +155,39 @@ namespace day_2
             var cur = this.head;
             for (int i = 0; i < idx -1; ++i)
             {
-                cur = cur.getNext();    
+                cur = cur.GetNext();    
             }
-            cur.setNext(cur.getNext().getNext());
+            cur.SetNext(cur.GetNext().GetNext());
         }
 
         // Method to find by value
-        public Find(data)
+        public int Find(int data)
         {
-
+            int count = 0;
+            var cur = this.head;
+            while(cur != null)
+            {
+                if(cur.GetValue() == data)
+                {
+                    return count;
+                }
+                cur = cur.GetNext();
+            }
+            return -1;
         }
 
         // Method to get a value by  index
-        public Get(data)
+        public int Get(int idx)
         {
+            if (this.head == null)
+                return int.MinValue;
+            int count = 0;
+            var cur = this.head;
+            while(cur != null && count != idx)
+            {
+                cur= cur.GetNext();
+            }
+            return cur.GetValue();
 
         }
     }
