@@ -12,25 +12,28 @@ namespace day_2
         int Value;
         Node Next;
 
+        //o(1)
         public int GetValue()
         {
             return this.Value;
         }
+        //o(1)
         public Node GetNext()
         {
             return this.Next;
         }
-
+        //o(1)
         public void SetValue(int value)
         {
             this.Value = value;
         }
+        //o(1)
         public void SetNext(Node next)
         {
             this.Next = next;
         }
 
-
+        //o(1)
         public Node(int value)
         {
             this.SetValue(value);
@@ -44,18 +47,18 @@ namespace day_2
     public class LinkedList
     {
         Node head;
-
+        //o(1)
         public LinkedList()
         {
             this.head = null;
         }
-
+        //o(1)
         public LinkedList(int data)
         {
             Node newNode = new Node(data);
             this.head = newNode;
         }
-
+        //o(n)
         // Method to add to the end of the list.
         public void Add(int data)
         {
@@ -77,7 +80,7 @@ namespace day_2
             
         }
 
-
+        //o(n)
         public string Display()
         {
             if (this.head == null)
@@ -91,6 +94,7 @@ namespace day_2
             return res;
         }
 
+        //o(n)
         public int Length()
         {
             var cur = this.head;
@@ -102,7 +106,8 @@ namespace day_2
             }
             return count;
         }
-    
+
+        //o(n)
         // Method to remove the first value
         public void RemoveValue(int data)
         {
@@ -125,6 +130,7 @@ namespace day_2
             }
         }
 
+        //o(n)
         // Method to remove the first value
         public void RemoveAllValues(int data)
         {
@@ -146,6 +152,7 @@ namespace day_2
             }
         }
 
+        //o(n)
         // Method to remove the value in an index
         public void RemoveIndex(int idx)
         {
@@ -160,6 +167,7 @@ namespace day_2
             cur.SetNext(cur.GetNext().GetNext());
         }
 
+        //o(n)
         // Method to find by value
         public int Find(int data)
         {
@@ -176,6 +184,7 @@ namespace day_2
             return -1;
         }
 
+        //o(n)
         // Method to get a value by  index
         public int Get(int idx)
         {
