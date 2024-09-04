@@ -89,7 +89,8 @@ namespace day_2
             var cur = this.head.GetNext();
             while(cur != null)
             {
-                res += "-> " + cur.GetValue().ToString();
+                res += " -> " + cur.GetValue().ToString();
+                cur = cur.GetNext();
             }
             return res;
         }
@@ -136,13 +137,12 @@ namespace day_2
         {
             if (this.head == null)
                 return;
-            if (this.head.GetValue() == data)
+            while (this.head != null && this.head.GetValue() == data)
             {
                 this.head = this.head.GetNext();
-                return;
             }
             var cur = this.head;
-            while (cur.GetNext() != null)
+            while (cur != null)
             {
                 if (cur.GetNext().GetValue() == data)
                 {
@@ -179,6 +179,7 @@ namespace day_2
                 {
                     return count;
                 }
+                ++count;
                 cur = cur.GetNext();
             }
             return -1;
@@ -189,14 +190,15 @@ namespace day_2
         public int Get(int idx)
         {
             if (this.head == null)
-                return int.MinValue;
+                return -1;
             int count = 0;
             var cur = this.head;
             while(cur != null && count != idx)
             {
-                cur= cur.GetNext();
+                cur = cur.GetNext();
+                ++count;
             }
-            return cur.GetValue();
+            return cur != null ? cur.GetValue() : -1;
 
         }
     }
